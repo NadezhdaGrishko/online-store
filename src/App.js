@@ -26,10 +26,10 @@ const App = () => {
           sx={{
             maxWidth: {
               xs: '376px',
-              sm: '376px',
+              //sm: '376px',
               md: '1200px',
               lg: '1400px',
-              xl: '1400px',
+              //xl: '1400px',
             }
           }}
         // sx={{mt: {xs: theme.lightTheme.spacing(8), sm: theme.lightTheme.spacing(10), lg: theme.lightTheme.spacing(12)}}} 

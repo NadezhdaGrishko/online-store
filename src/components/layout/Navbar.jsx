@@ -14,7 +14,7 @@ import theme from '../../theme';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = (props) => {
-  const { dark, toggleDark } = props
+  //const { dark, toggleDark } = props
 
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
@@ -31,7 +31,7 @@ const Navbar = (props) => {
         //color='{theme.lightTheme.palette.lightWhite.main}'
         // color='lightWhite'
       >
-        <Contacts dark={dark} toggleDark={toggleDark} />
+        <Contacts />
         <Toolbar>
           <Container sx={{
             display: 'flex',

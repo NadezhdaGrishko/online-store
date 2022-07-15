@@ -11,25 +11,21 @@ const Home = (props) => {
     const slug = params.slug || 'all'
   return (
     <Box>     
-      {/* <Link to='article/my-article'>
-        Go to my article
-      </Link> */}
-      <Slider/>
-
-      
-
-<Carousel/>
-
-      
-      
-      
-      <Button
+      {/* <Link to='/about'>
+        To about
+      </Link> */} 
+      {/* <Button
       variant='contained'
       color='secondary'
       to='/about'
       component={NavLink}>
         To about
-      </Button>
+      </Button> */}
+      <Slider/>
+
+<Carousel itemsToShow='6' collection='headphones'/>
+      
+     
       <News/>
       </Box>
   )

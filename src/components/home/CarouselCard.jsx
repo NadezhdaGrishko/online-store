@@ -9,7 +9,6 @@ import product4 from '../../images/carousel/product4.png'
 import theme from '../../theme';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { NavLink } from 'react-router-dom';
-import { border } from '@mui/system';
 import ClearIcon from '@mui/icons-material/Clear';
 
 const CarouselCard = (props) => {
@@ -17,7 +16,8 @@ const CarouselCard = (props) => {
     const [ratingValue, setRatingValue] = useState(2);
     return (
         <>
-            <Card sx={{ width: { xs: '174px', md: '230px', lg: '234px' } }}>
+            <Card
+                sx={{ width: { xs: '174px', md: '230px', lg: '234px' } }}>
                 <CardContent sx={{
                     color: theme.lightTheme.palette.success.main,
                     //color: theme.success,
@@ -57,11 +57,11 @@ const CarouselCard = (props) => {
                         </Typography>
                     </Box>
                     <Typography component={NavLink} to='/'
-                        sx={{ color: 'black', fontWeight: '400', fontSize: '14px', paddingTop: '6px', textDecoration: 'none' }}>
+                        sx={{ color: 'black', fontWeight: '400', fontSize: '14px', paddingTop: '6px', textDecoration: 'none', }}>
                         {props.productName}
                     </Typography>
 
-                    <CardActions sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end'}}>
+                    <CardActions sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', }}>
                         <Box sx={{ paddingTop: '8px' }}>
                             <Typography sx={{
                                 color: theme.lightTheme.palette.darkGray.main,
@@ -70,17 +70,16 @@ const CarouselCard = (props) => {
                                 textDecoration: 'line-through',
 
                             }}>
-                                $499
+                                {props.oldPrice}
                             </Typography>
                             <Typography sx={{
                                 color: 'black',
                                 fontSize: '18px',
                                 fontWeight: '600',
                             }}>
-                                $499
+                                {props.price}
                             </Typography>
                         </Box>
-
 
                         <Button
                             variant='outlined'
@@ -95,8 +94,8 @@ const CarouselCard = (props) => {
                         >
                             <img src={require('../../images/icons/icon-cart.png')} alt='cart' />
                         </Button>
-                        <Button 
-                        variant='outlined'
+                        <Button
+                            variant='outlined'
                             color='error'
                             to='/about'
                             component={NavLink}
@@ -105,11 +104,10 @@ const CarouselCard = (props) => {
                                 height: '36px',
                                 width: '36px',
                             }}>
-                            <ClearIcon/>
+                            <ClearIcon />
                         </Button>
                     </CardActions>
                 </CardContent>
-
             </Card>
         </>
     )

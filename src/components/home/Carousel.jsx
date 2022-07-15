@@ -11,8 +11,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CarouselCard from './CarouselCard';
 
 //firebase imports
-import {firestore} from '../../firebase/clientApp';
-import {collection, QueryDocumentSpanshot, DocumentData, query, where,limit, getDocs} from 'firebase/firestore';
+import { firestore } from '../../firebase/clientApp';
+import { collection, QueryDocumentSpanshot, DocumentData, query, where, limit, getDocs } from 'firebase/firestore';
 
 
 
@@ -20,7 +20,7 @@ function Carousel(props) {
 
   //только для Typecript
   //const [headphones, setHeadphones] = useState<QueryDocumentSpanshot<DocumentData>[]>([])
-  
+
   const [headphones, setHeadphones] = useState([])
   const [loading, setLoading] = useState(true)
   const headphonesCollection = collection(firestore, 'headphones');
@@ -35,7 +35,7 @@ function Carousel(props) {
     setLoading(false)
   }
 
-  useEffect( () => {
+  useEffect(() => {
     getHeadphones()
   }, [])
 
@@ -47,6 +47,7 @@ function Carousel(props) {
       {loading && <Typography>loading...</Typography>}
 
       <ReactSimplyCarousel
+
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
         itemsToShow={1}
@@ -87,7 +88,7 @@ function Carousel(props) {
         }}
         responsiveProps={[
           {
-            itemsToShow: 6,
+            itemsToShow: props.itemsToShow,
             itemsToScroll: 4,
             //minWidth: 768,
           },
@@ -95,13 +96,15 @@ function Carousel(props) {
         speed={400}
         easing="linear"
       >
-        {headphones.length === 0 ? 
-        (<Typography>No products yet...</Typography>) :
-        (
-          headphones.map( (headphone, index) => (
-            <CarouselCard key ={index} image={product1} productName={headphone.data().title}/>
-          ))
-        )}
+        {headphones.length === 0 ?
+          (<Typography>
+            {/* No products yet... */}
+          </Typography>) :
+          (
+            props.collection.map((item, index) => (
+              <CarouselCard key={index} image={product1} productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price}/>
+            ))
+          )}
         {/* <CarouselCard image={product1} productName='EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On...' />
         <CarouselCard image={product2} productName='EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On...' /> */}
 

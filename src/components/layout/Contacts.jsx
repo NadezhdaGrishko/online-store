@@ -11,7 +11,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import ShopInfo from './ShopInfo';
 
 const Contacts = (props) => {
-  const { dark, toggleDark } = props
+  //const { dark, toggleDark } = props
 
 
   return (  

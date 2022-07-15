@@ -6,7 +6,7 @@ const News = () => {
   return (
     <Grid container spacing={8} >
       <Grid item component={Typography} xs={12} sx={{ color: 'black', fontWeight: '600', fontSize: '22px', pb: '2px' }}>Follow us on Instagram for News, Offers & More</Grid>
-      <Grid item xs={12} sm={6} md={4} lg={2}
+      <Grid item xs={12} sm={6} md={3} xl={2}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', pl: '0px'}}>
         <img src={require('../../images/news/element1.png')} />
         <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
@@ -17,7 +17,7 @@ const News = () => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={2}
+      <Grid item xs={12} sm={6} md={3} xl={2}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', }}>
         <img src={require('../../images/news/element2.png')} />
         <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
@@ -28,9 +28,9 @@ const News = () => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={2}
+      <Grid item xs={12} sm={6} md={3} xl={2}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', }}>
-        <img src={require('../../images/news/element1.png')} />
+        <img src={require('../../images/news/element3.png')} />
         <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
           If you’ve recently made a desktop PC or laptop purchase, you might want to consider adding peripherals to enhance your home office setup, your gaming rig, or your business workspace...
         </Typography>
@@ -39,9 +39,9 @@ const News = () => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={2}
+      <Grid item xs={12} sm={6} md={3} xl={2}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', }}>
-        <img src={require('../../images/news/element1.png')} />
+        <img src={require('../../images/news/element4.png')} />
         <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
           If you’ve recently made a desktop PC or laptop purchase, you might want to consider adding peripherals to enhance your home office setup, your gaming rig, or your business workspace...
         </Typography>
@@ -50,9 +50,9 @@ const News = () => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={2}
+      <Grid item xs={12} sm={6} md={3} xl={2}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', }}>
-        <img src={require('../../images/news/element1.png')} />
+        <img src={require('../../images/news/element5.png')} />
         <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
           If you’ve recently made a desktop PC or laptop purchase, you might want to consider adding peripherals to enhance your home office setup, your gaming rig, or your business workspace...
         </Typography>
@@ -61,9 +61,9 @@ const News = () => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={2}
+      <Grid item xs={12} sm={6} md={3} xl={2}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', }}>
-        <img src={require('../../images/news/element1.png')} />
+        <img src={require('../../images/news/element6.png')} />
         <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
           If you’ve recently made a desktop PC or laptop purchase, you might want to consider adding peripherals to enhance your home office setup, your gaming rig, or your business workspace...
         </Typography>
@@ -72,9 +72,9 @@ const News = () => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={2}
+      <Grid item xs={12} sm={6} md={3} xl={2}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', }}>
-        <img src={require('../../images/news/element1.png')} />
+        <img src={require('../../images/news/element7.png')} />
         <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
           If you’ve recently made a desktop PC or laptop purchase, you might want to consider adding peripherals to enhance your home office setup, your gaming rig, or your business workspace...
         </Typography>
@@ -83,9 +83,20 @@ const News = () => {
         </Typography>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={4} lg={2}
+      <Grid item xs={12} sm={6} md={3} xl={2}
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', }}>
-        <img src={require('../../images/news/element1.png')} />
+        <img src={require('../../images/news/element8.png')} />
+        <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
+          If you’ve recently made a desktop PC or laptop purchase, you might want to consider adding peripherals to enhance your home office setup, your gaming rig, or your business workspace...
+        </Typography>
+        <Typography sx={{ color: theme.lightTheme.palette.gray.main, fontWeight: '400', fontSize: '10px' }}>
+          01.09.2020
+        </Typography>
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={3} xl={2}
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', }}>
+        <img src={require('../../images/news/element9.png')} />
         <Typography sx={{ color: 'black', fontWeight: '400', fontSize: '12px', maxWidth: '225px', py: '8px', px: { xs: '8px', sm: '10px', md: '12px' }, textAlign: 'center' }}>
           If you’ve recently made a desktop PC or laptop purchase, you might want to consider adding peripherals to enhance your home office setup, your gaming rig, or your business workspace...
         </Typography>
