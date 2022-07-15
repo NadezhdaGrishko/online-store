@@ -11,7 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-
+/* .body-root {
+font-family: 'Poppins', sans-serif;
+} */
 .nav-link.active {
 background-color: rgba(0,0,0,.1);
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Typography, Box, Button, Paper, List, ListItem, ListItemText, Avatar, Drawer } from '@mui/material'
-
+import { AppBar, Toolbar, IconButton, Typography, Box, Button, Paper, List, ListItem, ListItemText, Avatar, Drawer } from '@mui/material';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import Contacts from './Contacts';
 import Home from '../../pages/Home'
@@ -11,7 +10,7 @@ import { Container } from '@mui/system';
 import logo from '../../images/logo.png'
 import search from '../../images/icons/icon-search.png'
 import cart from '../../images/icons/icon-shopping-cart.png'
-import themes from '../../themes';
+import theme from '../../theme';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = (props) => {
@@ -28,8 +27,9 @@ const Navbar = (props) => {
       </Drawer>
 
       <AppBar
-        position='sticky'
-        color='lightWhite'
+        position='sticky' color='lightWhite'
+        //color='{theme.lightTheme.palette.lightWhite.main}'
+        // color='lightWhite'
       >
         <Contacts dark={dark} toggleDark={toggleDark} />
         <Toolbar>
@@ -38,7 +38,14 @@ const Navbar = (props) => {
             alignItems: 'center',
             gap: '.5rem',
             justifyContent: 'space-between',
-            p: { xs: 0, md: '.5rem' }
+            p: { xs: 0, md: '.5rem' },
+            maxWidth: { 
+              xs: '376px',
+              sm: '376px',
+               md: '1200px',
+               lg: '1400px',
+              xl: '1400px',
+              }
           }}>
 
             <Typography

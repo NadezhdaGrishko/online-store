@@ -15,6 +15,7 @@ function Slider(props) {
         onRequestChange={setActiveSlideIndex}
         itemsToShow={1}
         itemsToScroll={1}
+        
         forwardBtnProps={{
           //here you can also pass className, or any other button element attributes
           style: {
@@ -34,8 +35,7 @@ function Slider(props) {
             textAlign: 'center',
             width: 36,
             transform: 'translateX(-36px)',
-           
-          },
+                     },
           children: <span>{`>`}</span>,
         }}
         backwardBtnProps={{

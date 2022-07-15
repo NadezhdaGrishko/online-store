@@ -1,13 +1,51 @@
-import { Box } from '@mui/material';
 import React from 'react'
-import { useState } from 'react';
+import { Box, CardContent, CardHeader, CardMedia, Rating, Grid, Typography } from '@mui/material';
+import { useState, useEffect } from 'react';
 import ReactSimplyCarousel from 'react-simply-carousel';
+import product1 from '../../images/carousel/product1.png'
+import product2 from '../../images/carousel/product2.png'
+import product3 from '../../images/carousel/product3.png'
+import product4 from '../../images/carousel/product4.png'
+import theme from '../../theme';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CarouselCard from './CarouselCard';
+
+//firebase imports
+import {firestore} from '../../firebase/clientApp';
+import {collection, QueryDocumentSpanshot, DocumentData, query, where,limit, getDocs} from 'firebase/firestore';
+
+
 
 function Carousel(props) {
+
+  //только для Typecript
+  //const [headphones, setHeadphones] = useState<QueryDocumentSpanshot<DocumentData>[]>([])
+  
+  const [headphones, setHeadphones] = useState([])
+  const [loading, setLoading] = useState(true)
+  const headphonesCollection = collection(firestore, 'headphones');
+
+  const getHeadphones = async () => {
+    const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
+    const querySnapshot = await getDocs(headphonesQuery)
+    const result = []
+    querySnapshot.forEach((snapshot) => result.push(snapshot))
+    setHeadphones(result)
+    console.log(result)
+    setLoading(false)
+  }
+
+  useEffect( () => {
+    getHeadphones()
+  }, [])
+
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   return (
     <Box>
+
+      {loading && <Typography>loading...</Typography>}
+
       <ReactSimplyCarousel
         activeSlideIndex={activeSlideIndex}
         onRequestChange={setActiveSlideIndex}
@@ -49,45 +87,24 @@ function Carousel(props) {
         }}
         responsiveProps={[
           {
-            itemsToShow: 2,
-            itemsToScroll: 2,
-            minWidth: 768,
+            itemsToShow: 6,
+            itemsToScroll: 4,
+            //minWidth: 768,
           },
         ]}
         speed={400}
         easing="linear"
       >
-        {/* here you can also pass any other element attributes. Also, you can use your custom components as slides */}
-        <div style={{ width: 300, height: 300, background: '#ff80ed' }}>
-          slide 0
-        </div>
-        <div style={{ width: 300, height: 300, background: '#065535' }}>
-          slide 1
-        </div>
-        <div style={{ width: 300, height: 300, background: '#000000' }}>
-          slide 2
-        </div>
-        <div style={{ width: 300, height: 300, background: '#133337' }}>
-          slide 3
-        </div>
-        <div style={{ width: 300, height: 300, background: '#ffc0cb' }}>
-          slide 4
-        </div>
-        <div style={{ width: 300, height: 300, background: '#ffffff' }}>
-          slide 5
-        </div>
-        <div style={{ width: 300, height: 300, background: '#ffe4e1' }}>
-          slide 6
-        </div>
-        <div style={{ width: 300, height: 300, background: '#008080' }}>
-          slide 7
-        </div>
-        <div style={{ width: 300, height: 300, background: '#ff0000' }}>
-          slide 8
-        </div>
-        <div style={{ width: 300, height: 300, background: '#e6e6fa' }}>
-          slide 9
-        </div>
+        {headphones.length === 0 ? 
+        (<Typography>No products yet...</Typography>) :
+        (
+          headphones.map( (headphone, index) => (
+            <CarouselCard key ={index} image={product1} productName={headphone.data().title}/>
+          ))
+        )}
+        {/* <CarouselCard image={product1} productName='EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On...' />
+        <CarouselCard image={product2} productName='EX DISPLAY : MSI Pro 16 Flex-036AU 15.6 MULTITOUCH All-In-On...' /> */}
+
       </ReactSimplyCarousel>
     </Box>
   );

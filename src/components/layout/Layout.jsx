@@ -1,18 +1,15 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { Container } from '@mui/material';
 
 const Layout = ({ children }, props) => {
-  const {dark, toggleDark}=props
+  const { dark, toggleDark } = props
   return (
     <>
-      <div>
-        
-        <Navbar dark={dark} toggleDark={toggleDark}/>
-        
-        <main>{children}</main>
-        <Footer />
-      </div>
+      <Navbar dark={dark} toggleDark={toggleDark} />
+      <main>{children}</main>
+      <Footer />
     </>
   )
 }

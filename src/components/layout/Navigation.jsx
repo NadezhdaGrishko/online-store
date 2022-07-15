@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { List, ListItem, ListItemText, Typography } from '@mui/material'
-import themes from '../../themes';
+import theme from '../../theme';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { Box } from '@mui/system';
 
@@ -9,7 +9,7 @@ const Navigation = (props) => {
   const { type } = props
   return (
     <Box sx={{
-      p: themes.lightTheme.spacing(2),
+      // p: theme.lightTheme.spacing(2),
     }}>
       {type === 'drawer' &&
       <Typography
@@ -37,7 +37,7 @@ const Navigation = (props) => {
         sx={{
           display: 'flex',
           flexDirection: type === 'toolbar' ? 'row' : 'column',
-          // color: type === 'toolbar' ? 'red' : themes.lightTheme.palette.primary.main,
+          // color: type === 'toolbar' ? 'red' : theme.lightTheme.palette.primary.main,
         }}>
         <ListItem button to='/products/headphones' component={NavLink} className='nav-link'>
           <ListItemText primary='Headphones' />

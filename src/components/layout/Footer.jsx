@@ -5,7 +5,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <Box sx={{
-      marginTop: 0
+      marginTop: 'auto',
     }}>
       THIS IS FOOTER
     </Box>
