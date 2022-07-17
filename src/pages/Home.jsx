@@ -1,19 +1,46 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Link, NavLink } from 'react-router-dom';
 import Carousel from '../components/home/Carousel';
 import News from '../components/home/News';
 import Slider from '../components/home/Slider';
 
+import { firestore } from '../firebase/clientApp';
+import { collection, QueryDocumentSpanshot, DocumentData, query, where, limit, getDocs } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+
+
 const Home = (props) => {
   const params = useParams()
-    const slug = params.slug || 'all'
+  const slug = params.slug || 'all'
+
+
+  const [headphones, setHeadphones] = useState([])
+  const [loading, setLoading] = useState(true)
+  const headphonesCollection = collection(firestore, 'headphones');
+
+  const getHeadphones = async () => {
+    const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
+    const querySnapshot = await getDocs(headphonesQuery)
+    const result = []
+    querySnapshot.forEach((snapshot) => result.push(snapshot))
+    setHeadphones(result)
+    console.log(result)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getHeadphones()
+  }, [])
+
+
+
   return (
-    <Box>     
+    <Box>
       {/* <Link to='/about'>
         To about
-      </Link> */} 
+      </Link> */}
       {/* <Button
       variant='contained'
       color='secondary'
@@ -21,13 +48,13 @@ const Home = (props) => {
       component={NavLink}>
         To about
       </Button> */}
-      <Slider/>
+      <Slider />
 
-<Carousel itemsToShow='6' collection='headphones'/>
-      
-     
-      <News/>
-      </Box>
+      {loading && <Typography>loading...</Typography>}
+      <Carousel itemsToShow='6' collection={headphones} />
+
+      <News />
+    </Box>
   )
 }
 

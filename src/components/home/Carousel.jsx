@@ -18,33 +18,34 @@ import { collection, QueryDocumentSpanshot, DocumentData, query, where, limit, g
 
 function Carousel(props) {
 
+  const {collection, itemsToShow} = props
   //только для Typecript
   //const [headphones, setHeadphones] = useState<QueryDocumentSpanshot<DocumentData>[]>([])
 
-  const [headphones, setHeadphones] = useState([])
-  const [loading, setLoading] = useState(true)
-  const headphonesCollection = collection(firestore, 'headphones');
+  // const [headphones, setHeadphones] = useState([])
+  // const [loading, setLoading] = useState(true)
+  // const headphonesCollection = collection(firestore, 'headphones');
 
-  const getHeadphones = async () => {
-    const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
-    const querySnapshot = await getDocs(headphonesQuery)
-    const result = []
-    querySnapshot.forEach((snapshot) => result.push(snapshot))
-    setHeadphones(result)
-    console.log(result)
-    setLoading(false)
-  }
+  // const getHeadphones = async () => {
+  //   const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
+  //   const querySnapshot = await getDocs(headphonesQuery)
+  //   const result = []
+  //   querySnapshot.forEach((snapshot) => result.push(snapshot))
+  //   setHeadphones(result)
+  //   console.log(result)
+  //   setLoading(false)
+  // }
 
-  useEffect(() => {
-    getHeadphones()
-  }, [])
+  // useEffect(() => {
+  //   getHeadphones()
+  // }, [])
 
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   return (
     <Box>
 
-      {loading && <Typography>loading...</Typography>}
+      {/* {loading && <Typography>loading...</Typography>} */}
 
       <ReactSimplyCarousel
 
@@ -88,7 +89,7 @@ function Carousel(props) {
         }}
         responsiveProps={[
           {
-            itemsToShow: props.itemsToShow,
+            itemsToShow: itemsToShow,
             itemsToScroll: 4,
             //minWidth: 768,
           },
@@ -96,12 +97,12 @@ function Carousel(props) {
         speed={400}
         easing="linear"
       >
-        {headphones.length === 0 ?
-          (<Typography>
-            {/* No products yet... */}
+        {collection.length === 0 ?
+          (<Typography sx={{whiteSpace: 'nowrap', width: '100%', fontStyle: 'italic', py: '8px'}}>
+             No products yet...
           </Typography>) :
           (
-            props.collection.map((item, index) => (
+            collection.map((item, index) => (
               <CarouselCard key={index} image={product1} productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price}/>
             ))
           )}

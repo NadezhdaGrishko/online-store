@@ -27,6 +27,7 @@ const CarouselCard = (props) => {
                     alignItems: 'center',
                     columnGap: '2px',
                 }}>
+                    {/* отображать в зависимости от availability 'in stock'/'check availability' */}
                     <CheckCircleIcon sx={{ width: '8px', height: '8px' }} />
                     in stock
                 </CardContent>
@@ -51,7 +52,6 @@ const CarouselCard = (props) => {
                             color: theme.lightTheme.palette.gray.main,
                             whiteSpace: 'nowrap',
                             fontSize: '12px',
-
                         }}>
                             Reviews ({ratingValue})
                         </Typography>
