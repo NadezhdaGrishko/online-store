@@ -7,7 +7,7 @@ import News from '../components/home/News';
 import Slider from '../components/home/Slider';
 
 import { firestore } from '../firebase/clientApp';
-import { collection, QueryDocumentSpanshot, DocumentData, query, where, limit, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot, QueryDocumentSpanshot, DocumentData, query, where, limit, getDocs } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 
 
@@ -20,14 +20,29 @@ const Home = (props) => {
   const [loading, setLoading] = useState(true)
   const headphonesCollection = collection(firestore, 'headphones');
 
+  // const getHeadphones = async () => {
+  //   //const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
+  //   const headphonesQuery = query(headphonesCollection, where('availability', 'in', [true, false]), limit(20))
+  //   const querySnapshot = await getDocs(headphonesQuery)
+  //   const result = []
+  //   querySnapshot.forEach((snapshot) => result.push(snapshot))
+  //   setHeadphones(result)
+  //   console.log(result)
+  //   setLoading(false)
+  // }
+
+
   const getHeadphones = async () => {
-    const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
-    const querySnapshot = await getDocs(headphonesQuery)
-    const result = []
-    querySnapshot.forEach((snapshot) => result.push(snapshot))
-    setHeadphones(result)
-    console.log(result)
-    setLoading(false)
+    //const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
+    const headphonesQuery = query(headphonesCollection, where('availability', 'in', [true, false]), limit(20))
+
+    const unsub = onSnapshot(headphonesQuery, (snapshot) => {
+      const result = []
+      snapshot.forEach((doc) => result.push(doc))
+      setHeadphones(result)
+      console.log(result)
+      setLoading(false)
+    })
   }
 
   useEffect(() => {
@@ -51,7 +66,11 @@ const Home = (props) => {
       <Slider />
 
       {loading && <Typography>loading...</Typography>}
-      <Carousel itemsToShow='6' collection={headphones} />
+
+      <Carousel collection={headphones} />
+
+      {/* <Carousel itemsToShow='6' collection={headphones} /> */}
+      {/* <Carousel itemsToShow='5' collection={usb} /> */}
 
       <News />
     </Box>

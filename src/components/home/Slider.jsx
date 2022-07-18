@@ -15,7 +15,7 @@ import { Navigation } from "swiper";
 function Slider(props) {
 
     return (
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        <Swiper navigation={true} modules={[Navigation]} className="mySwiper" loop={true} grabCursor={true}>
             <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>
             <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>
             <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>

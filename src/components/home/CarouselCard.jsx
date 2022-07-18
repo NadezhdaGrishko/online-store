@@ -10,6 +10,7 @@ import theme from '../../theme';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { NavLink } from 'react-router-dom';
 import ClearIcon from '@mui/icons-material/Clear';
+import CallIcon from '@mui/icons-material/Call';
 
 const CarouselCard = (props) => {
 
@@ -18,6 +19,8 @@ const CarouselCard = (props) => {
         <>
             <Card
                 sx={{ width: { xs: '174px', md: '230px', lg: '234px' } }}>
+
+                    {props.availability ? 
                 <CardContent sx={{
                     color: theme.lightTheme.palette.success.main,
                     //color: theme.success,
@@ -28,10 +31,24 @@ const CarouselCard = (props) => {
                     columnGap: '2px',
                 }}>
                     {/* отображать в зависимости от availability 'in stock'/'check availability' */}
-                    <CheckCircleIcon sx={{ width: '8px', height: '8px' }} />
+                    <CheckCircleIcon sx={{ width: '10px', height: '10px' }} />
                     in stock
                 </CardContent>
-
+                :
+                <CardContent sx={{
+                    color: theme.lightTheme.palette.error.main,
+                    //color: theme.success,
+                    fontWeight: '400',
+                    fontSize: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    columnGap: '2px',
+                }}>
+                    {/* отображать в зависимости от availability 'in stock'/'check availability' */}
+                    <CallIcon sx={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: theme.lightTheme.palette.error.main, color: 'white', border: '1px solid #C94D3F'}} />
+                    chech availability
+                </CardContent>
+}
                 <CardMedia
                     component='img'
                     image={props.image}
