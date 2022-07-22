@@ -73,13 +73,17 @@ const CarouselCard = (props) => {
                             Reviews ({ratingValue})
                         </Typography>
                     </Box>
-                    <Typography component={NavLink} to='/'
+
+                    {/* ссылка должна быть products/названиеКоллекции/slugТовара */}
+                    <Typography component={NavLink} to={`/product/${props.productName}`}
                         sx={{ color: 'black', fontWeight: '400', fontSize: '14px', paddingTop: '6px', textDecoration: 'none', }}>
                         {props.productName}
                     </Typography>
 
                     <CardActions sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', }}>
                         <Box sx={{ paddingTop: '8px' }}>
+
+                            {props.oldPrice && (
                             <Typography sx={{
                                 color: theme.lightTheme.palette.darkGray.main,
                                 fontSize: '14px',
@@ -89,6 +93,7 @@ const CarouselCard = (props) => {
                             }}>
                                 {props.oldPrice}
                             </Typography>
+                            )}
                             <Typography sx={{
                                 color: 'black',
                                 fontSize: '18px',

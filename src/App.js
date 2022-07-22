@@ -3,11 +3,14 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import About from './pages/About.jsx';
 import Home from './pages/Home.jsx';
+import Login from './pages/Login.jsx';
 import theme from './theme';
 import Layout from './components/layout/Layout.jsx';
 //import Products from './pages/Products.jsx';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const App = () => {
   const [dark, setDark] = useState(localStorage.theme === 'dark')
@@ -16,6 +19,29 @@ const App = () => {
     localStorage.theme = !dark ? 'dark' : 'light'
     setDark(!dark)
   }
+
+
+  const navigate = useNavigate()
+  const params = useParams()
+  const auth = getAuth()
+
+
+
+  // только для Next
+  //const router = useRouter()
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user);
+
+    } else {
+
+      //только для Next
+      //if(router.pathname !== './login') {
+      //router.push('/login')}
+    }
+  })
+
   return (
 
     <ThemeProvider theme={dark ? theme.darkTheme : theme.lightTheme}>
@@ -44,7 +70,9 @@ const App = () => {
 
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/products/:slug' element={<About />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/login' element={<Login />} />
+            {/* <Route path='/products/:slug'  /> */}
           </Routes>
         </Container>
 

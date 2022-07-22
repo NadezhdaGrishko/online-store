@@ -39,6 +39,8 @@ const lightTheme = createTheme({
         root: {
           borderRadius: '50px',
           border: '2px solid',
+          textTransform: 'none',
+          fontSize: '14px',
         },
       },
     },
@@ -61,6 +63,13 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiBreadcrumbs: {
+      styleOverrides: {
+        separator: {
+          fontSize: '10px',
+        }
+      }
+    }
 
   },
 
@@ -91,7 +100,7 @@ const darkTheme = createTheme({
       contrastText: '#fff',
     },
     lightWhite: {
-      main: '#F5F7FF', // color 1
+      main: '#303030', // color 1
     },
     gray: {
       main: '#A2A6B0', // color 5
@@ -116,6 +125,8 @@ const darkTheme = createTheme({
         root: {
           borderRadius: '50px',
           border: '2px solid',
+          textTransform: 'none',
+          fontSize: '14px',
         },
       },
     },
@@ -138,7 +149,23 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiBreadcrumbs: {
+      styleOverrides: {
+        separator: {
+          fontSize: '10px',
+        }
+      }
+    }
   },
+    breakpoints: {
+    values: {
+      xs: 0,
+      sm: 376,
+      md: 768,
+      lg: 1200,
+      xl: 1536,
+    }
+  }
 });
 
 const theme = {

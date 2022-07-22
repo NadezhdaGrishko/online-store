@@ -33,7 +33,7 @@ const Navigation = (props) => {
       </Typography>}
 
 
-      <List component='div'
+      <List component='nav'
         sx={{
           display: 'flex',
           flexDirection: type === 'toolbar' ? 'row' : 'column',
@@ -45,11 +45,11 @@ const Navigation = (props) => {
         <ListItem button to='/products/USB' component={NavLink} className='nav-link'>
           <ListItemText primary='USB' />
         </ListItem>
-        <ListItem button to='/products/camera' component={NavLink} className='nav-link'>
-          <ListItemText primary='Cameras' />
+        <ListItem button to='/products/chargets' component={NavLink} className='nav-link'>
+          <ListItemText primary='Chargets' />
         </ListItem>
-        <ListItem button to='/products/watches' component={NavLink} className='nav-link'>
-          <ListItemText primary='Watches' />
+        <ListItem button to='/products/services' component={NavLink} className='nav-link'>
+          <ListItemText primary='Services' />
         </ListItem>
         {/* <nav className='menu'> */}
         {/* <NavLink to='/' className='nav-link'>Наушники</NavLink>
