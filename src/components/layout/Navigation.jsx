@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { List, ListItem, ListItemText, Typography } from '@mui/material'
+import { Button, List, ListItem, ListItemText, Typography } from '@mui/material'
 import theme from '../../theme';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { Box } from '@mui/system';
@@ -50,6 +50,11 @@ const Navigation = (props) => {
         </ListItem>
         <ListItem button to='/products/services' component={NavLink} className='nav-link'>
           <ListItemText primary='Services' />
+        </ListItem>
+        <ListItem>
+        <Button to='/products/catalog' sx={{px: '1.5rem', fontSize: '1rem'}} className='nav-link-catalog' component={NavLink} >
+          Catalog
+        </Button>
         </ListItem>
         {/* <nav className='menu'> */}
         {/* <NavLink to='/' className='nav-link'>Наушники</NavLink>

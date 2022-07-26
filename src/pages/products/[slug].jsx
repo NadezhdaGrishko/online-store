@@ -1,9 +1,16 @@
+import { Box } from '@mui/system';
 import React from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
 
-const Headphones = () => {
+const [slug] = () => {
+  const params = useParams()
+  const slug = params.slug || 'all'
+
   return (
-    <div>Headphones</div>
+    <Box sx={{mt:'5rem'}}>
+      slug
+    </Box>
   )
 }
 
-export default Headphones
+export default [slug]

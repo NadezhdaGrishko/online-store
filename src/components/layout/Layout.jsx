@@ -5,7 +5,7 @@ import { Container, IconButton } from '@mui/material';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
-const Layout = ({ children }, ) => {
+const Layout = ({ children } ) => {
   //const  = props
   return (
     <>

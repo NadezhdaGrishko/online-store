@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Typography, Box, Button, Paper, List, ListItem, ListItemText, Avatar, Drawer } from '@mui/material';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import Contacts from './Contacts';
@@ -12,13 +12,34 @@ import search from '../../images/icons/icon-search.png'
 import cart from '../../images/icons/icon-shopping-cart.png'
 import theme from '../../theme';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const Navbar = (props) => {
+import PersonIcon from '@mui/icons-material/Person';
+import { getAuth, signOut } from 'firebase/auth';
+
+import { useContext } from 'react';
+import Context from '../../context/Context';
+
+
+const Navbar = ( ) => {
   //const { dark, toggleDark } = props
+const ctx = useContext(Context);
 
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
+  const auth = getAuth();
+  const username = auth.currentUser ? auth.currentUser.displayName : 'guest'
+  const handleLogout = () => {
+    signOut(auth)
+  }
+
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+      navigate('/login')
+  }
 
   return (
     <React.Fragment>
@@ -31,7 +52,7 @@ const Navbar = (props) => {
         //color='{theme.lightTheme.palette.lightWhite.main}'
         // color='lightWhite'
       >
-        <Contacts />
+        <Contacts/>
         <Toolbar>
           <Container sx={{
             display: 'flex',
@@ -83,22 +104,33 @@ const Navbar = (props) => {
 
             <Box sx={{
               display: 'flex',
+              alignItems: 'center',
               columnGap: '.5rem',
               ml: 'auto',
             }}>
-              <IconButton aria-label='search'>
-                <img src={search} alt='search' />
+              <Typography sx={{fontStyle:'italic'}}>Hello, {username}</Typography>
+              <IconButton aria-label='search' size='large'>
+                <img src={search} alt='search'/>
               </IconButton>
-              <IconButton aria-label='cart'>
+              <IconButton aria-label='cart' size='large'>
                 <img src={cart} alt='cart' />
               </IconButton>
-              <Avatar
+
+
+              {ctx.isUser ?
+              <Button onClick={handleLogout}>Logout</Button>
+              :
+              <IconButton onClick={handleSignIn}>
+                 <AccountCircleIcon sx={{ width: '36px', height: '36px'}}/> 
+              </IconButton>
+              }
+              {/* <Avatar
                 alt='logo'
                 src={logo}
                 sx={{
                   width: 36,
                   height: 36,
-                }} />
+                }} /> */}
             </Box>
           </Container>
 

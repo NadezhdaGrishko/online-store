@@ -17,3 +17,7 @@ font-family: 'Poppins', sans-serif;
 .nav-link.active {
 background-color: rgba(0,0,0,.1);
 }
+.nav-link-catalog.active {
+  background-color: rgba(1,86,255,.1);
+  background-opacity: .1,
+  }

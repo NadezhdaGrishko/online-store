@@ -9,10 +9,12 @@ import { Box } from '@mui/system';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ShopInfo from './ShopInfo';
+import { useContext } from 'react';
+import Context from '../../context/Context';
 
-const Contacts = (props) => {
-  //const { dark, toggleDark } = props
+const Contacts = ( ) => {
 
+  const ctx = useContext(Context)
 
   return (  
     <Box sx={{backgroundColor:  '#020202' , py: '8px', }}>
@@ -36,13 +38,13 @@ const Contacts = (props) => {
            </Typography>
 
       
-       {/* <IconButton onClick={toggleDark}
+      <IconButton onClick={ctx.toggleDark}
        sx={{
         // ml: 'auto',
         color: 'white'
        }}>
-          {dark ? <LightModeIcon /> : <DarkModeIcon />}
-        </IconButton> */}
+          {ctx.dark ? <LightModeIcon /> : <DarkModeIcon />}
+        </IconButton>
       
        
     </Container>

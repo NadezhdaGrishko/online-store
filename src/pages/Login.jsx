@@ -4,8 +4,23 @@ import React from 'react'
 import theme from '../theme'
 import Brightness1Icon from '@mui/icons-material/Brightness1';
 import GoogleIcon from '@mui/icons-material/Google';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
+const navigate = useNavigate();
+
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      //console.log(result);
+      navigate('/userAccount')
+    })
+
+  }
   return (
     <>
       <Breadcrumbs aria-label='breadcrumb' >
@@ -54,11 +69,11 @@ const Login = () => {
               fullWidth
               sx={{ backgroundColor: '#fff' }}
             />
-            <Box sx={{ mt: '12px', display: 'flex', gap: '12px', width: '100%' }}>
-              <Button variant='contained' color='primary' sx={{ border: 'none', py: '10px', px: '2.5rem' }}>
+            <Box sx={{ mt: '12px', display: 'flex', gap: '12px', width: '100%', alignItems:'center'}}>
+              <Button variant='contained' color='primary' sx={{ border: 'none', py: '12px', px: '2.5rem', whiteSpace: 'nowrap' }}>
                 Sign In
               </Button>
-              <Button color='primary' sx={{ border: 'none', py: '10px', }}>
+              <Button color='primary' sx={{ border: 'none', py: '8px', }}>
                 Forgot Your Password?
               </Button>
 
@@ -67,7 +82,7 @@ const Login = () => {
             color='inherit'
             size='large'
             sx={{ ml: 'auto', }}
-            //onClick={}
+            onClick={handleGoogleSignIn}
             >
               <GoogleIcon color='primary' fontSize='large'/>
             </IconButton>
@@ -96,12 +111,10 @@ const Login = () => {
             </List>
 
             
-            <Box sx={{    display: 'flex', gap: '12px' }}>
-              <Button variant='contained' color='primary' sx={{ border: 'none', py: '10px', px: '2.5rem' }}>
+              <Button variant='contained' color='primary' sx={{ border: 'none', py: '12px', px: '2.5rem', whiteSpace: 'nowrap' }}>
                 Create An Account
               </Button>
               
-            </Box>
           </Box>
         </Grid>
       </Grid>

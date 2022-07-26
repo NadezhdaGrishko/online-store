@@ -9,19 +9,19 @@ import Slider from '../components/home/Slider';
 import { firestore, auth } from '../firebase/clientApp';
 import { collection, onSnapshot, QueryDocumentSpanshot, DocumentData, query, where, limit, getDocs } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-
-//import {getAllProducts, getUsb, getHeadphones} from '../services/services.jsx'
-
-
+import { useContext } from 'react';
+import Context from '../context/Context';
 
 const Home = (props) => {
+
+  const ctx = useContext(Context)
+
   const params = useParams()
   const slug = params.slug || 'all'
 
   //const navigate = useNavigate()
 
   const [loading, setLoading] = useState(true)
-
 
   const [headphones, setHeadphones] = useState([])
   const headphonesCollection = collection(firestore, 'headphones');
@@ -30,8 +30,9 @@ const Home = (props) => {
 
   const getHeadphones = async () => {
     //const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
-    const headphonesQuery = query(headphonesCollection, where('availability', 'in', [true, false]), limit(20))
-
+    const headphonesQuery = query(headphonesCollection, 
+      //where('availability', 'in', [true, false]), limit(20)
+      )
     unsub = onSnapshot(headphonesQuery, (snapshot) => {
       const result = []
       snapshot.forEach((doc) => result.push(doc))
@@ -62,13 +63,7 @@ const Home = (props) => {
     })
   }
 
-  //не работает нормально - написать нор функцию для получения всех товаров
-  const [allProgucts, setAllProducts] = useState([])
-  const getAllProducts = async () => {
-    const result = await headphones.concat(usb).concat(usb)
-    setAllProducts(result)
-    console.log(result);
-  }
+
 
   useEffect(() => {
     //navigate('/login')
@@ -85,6 +80,10 @@ const Home = (props) => {
     <Box>
       <Slider />
 
+      {/* {ctx.counter} <Button onClick={ctx.increase}></Button> */}
+
+
+      
       <Typography>{slug}</Typography>
 
       {loading && <Typography>loading...</Typography>}
