@@ -38,7 +38,7 @@ const lightTheme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '50px',
-          border: '2px solid',
+          border: '2px solid #0156FF',
           textTransform: 'none',
           fontSize: '14px',
         },
@@ -124,7 +124,7 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '50px',
-          border: '2px solid',
+          border: '2px solid #0156FF',
           textTransform: 'none',
           fontSize: '14px',
         },

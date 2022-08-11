@@ -12,11 +12,14 @@ const ContextProvider = (props) => {
 
     const [isUser, setIsUser] = useState(false)
 
+    const [userName, setUserName] = useState('')
     const ctxValue = {
         dark,
         toggleDark,
         isUser,
         setIsUser,
+        userName, 
+        setUserName,
     }
 
     return (

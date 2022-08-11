@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider, CssBaseline, IconButton, Paper, Container } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import About from './pages/About.jsx';
 import Home from './pages/Home.jsx';
@@ -15,6 +15,8 @@ import UserAccount from './pages/UserAccount.jsx';
 
 import { useContext } from 'react';
 import Context from './context/Context';
+import ContactUs from './pages/ContactUs.jsx';
+import Register from './pages/Register.jsx';
 
 const App = () => {
   const ctx = useContext(Context)
@@ -32,7 +34,9 @@ const App = () => {
   //const [isUser, setIsUser] = useState(false)
   const auth = getAuth()
 
-  onAuthStateChanged(auth, (user) => {
+
+  useEffect(()=> {
+    onAuthStateChanged(auth, (user) => {
     if (user) {
       // console.log(auth);
       //console.log(user);
@@ -47,6 +51,8 @@ const App = () => {
       //router.push('/login')}
     }
   })
+  },[])
+  
 
   return (
 
@@ -72,7 +78,9 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
-            <Route path='/login' element={<Login />} />            
+            <Route path='/login' element={<Login />} />    
+            <Route path='/register' element={<Register />} /> 
+            <Route path='/contacts' element={<ContactUs />} />        
             <Route path='/userAccount' element={<UserAccount />} />
             <Route path='/products/:slug' element={<Catalog />} />
             

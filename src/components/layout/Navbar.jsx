@@ -14,6 +14,9 @@ import theme from '../../theme';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 import PersonIcon from '@mui/icons-material/Person';
 import { getAuth, signOut } from 'firebase/auth';
 
@@ -30,7 +33,9 @@ const ctx = useContext(Context);
   const handleClose = () => setOpen(false)
 
   const auth = getAuth();
-  const username = auth.currentUser ? auth.currentUser.displayName : 'guest'
+
+  
+  const username = auth.currentUser ? (auth.currentUser.displayName || ctx.userName) : 'guest'
   const handleLogout = () => {
     signOut(auth)
   }
@@ -105,15 +110,14 @@ const ctx = useContext(Context);
             <Box sx={{
               display: 'flex',
               alignItems: 'center',
-              columnGap: '.5rem',
               ml: 'auto',
             }}>
               <Typography sx={{fontStyle:'italic'}}>Hello, {username}</Typography>
-              <IconButton aria-label='search' size='large'>
-                <img src={search} alt='search'/>
+              <IconButton aria-label='search' size='large' color='inherit'>
+                <SearchIcon/>
               </IconButton>
-              <IconButton aria-label='cart' size='large'>
-                <img src={cart} alt='cart' />
+              <IconButton aria-label='cart' size='large' color='inherit'>
+                <ShoppingCartIcon/>
               </IconButton>
 
 
@@ -121,7 +125,7 @@ const ctx = useContext(Context);
               <Button onClick={handleLogout}>Logout</Button>
               :
               <IconButton onClick={handleSignIn}>
-                 <AccountCircleIcon sx={{ width: '36px', height: '36px'}}/> 
+                 <AccountCircleIcon sx={{ width: '36px', height: '36px', ml: '2px'}}/> 
               </IconButton>
               }
               {/* <Avatar
