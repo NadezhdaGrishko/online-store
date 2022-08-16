@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Typography, Box, Button, Paper, List, ListItem, ListItemText, Avatar, Drawer } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Box, Button, Paper, List, ListItem, Dialog,DialogTitle,DialogContent, DialogContentText, DialogActions, ListItemText, Avatar, Drawer } from '@mui/material';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import Contacts from './Contacts';
 import Home from '../../pages/Home'
@@ -36,9 +36,24 @@ const ctx = useContext(Context);
 
   
   const username = auth.currentUser ? (auth.currentUser.displayName || ctx.userName) : 'guest'
+  
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleClickCloseDialog = () => {
+    setOpenDialog(false);
+  };
+  
   const handleLogout = () => {
-    signOut(auth)
-  }
+    signOut(auth).then(() => {
+      setOpenDialog(false);
+    }).catch((error) => {
+      alert(error.code)
+    });
+}
 
   const navigate = useNavigate();
 
@@ -122,19 +137,34 @@ const ctx = useContext(Context);
 
 
               {ctx.isUser ?
-              <Button onClick={handleLogout}>Logout</Button>
+              <Button sx={{ px: '1rem'}} onClick={handleClickOpenDialog}>Logout</Button>
               :
               <IconButton onClick={handleSignIn}>
                  <AccountCircleIcon sx={{ width: '36px', height: '36px', ml: '2px'}}/> 
               </IconButton>
               }
-              {/* <Avatar
-                alt='logo'
-                src={logo}
-                sx={{
-                  width: 36,
-                  height: 36,
-                }} /> */}
+
+              <Dialog
+        open={openDialog}
+        onClose={handleClickCloseDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Log Out"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to log out?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleLogout}>OK</Button>
+          <Button onClick={handleClickCloseDialog} autoFocus>
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
             </Box>
           </Container>
 

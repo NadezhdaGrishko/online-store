@@ -5,7 +5,6 @@ import React, { useState, shouldComponentUpdate } from 'react';
 import { useContext } from 'react';
 import Context from '../context/Context';
 import { useNavigate, useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const Register = () => {
     const ctx = useContext(Context);
@@ -15,20 +14,35 @@ const Register = () => {
     const [passwordError, setPasswordError] = useState('');
     const [userPhoneNumber, setUserPhoneNumber] = useState('');
 
-    const validatePassword = () => {
+    const validatePassword = (e) => {
+        setUserPassword(e.target.value)
+        if (userPassword === '') {
+            setPasswordError('This field is required')
+        }
+        else if (userPassword.length < 6) {
+            setPasswordError('Password should be at least 6 characters')
+        }
+        else {
+            setPasswordError('')
+        }
+    }
+
+    const validateConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value)
         let isValid = true
-        if (userPassword !== '' && confirmPassword !== '') {
+        if (confirmPassword === '') {
+            setConfirmPasswordError('This field is required')
+        }
+        else if (userPassword !== '' && confirmPassword !== '') {
             if (userPassword !== confirmPassword) {
                 isValid = false
-                setPasswordError('Passwords does not match')
+                setConfirmPasswordError('Passwords don\'t match')
+            } else {
+                setConfirmPasswordError('')
             }
         }
         return isValid
     }
-
-
-    const [isEmailValid, setIsEmailValid] = useState(false);
-    const [emailMessage, setEmailMessage] = useState('');
 
     const navigate = useNavigate();
     const auth = getAuth();
@@ -46,32 +60,10 @@ const Register = () => {
                 console.log(error);
                 console.log(errorCode);
                 console.log(errorMessage);
+                alert(errorCode)
             })
     };
 
-    // const handleRegister = (e) => {
-    //     e.preventDefault()
-    //     setError('')
-    //     if (validatePassword()) {
-    //         // Create a new user with email and password using firebase
-    //         createUserWithEmailAndPassword(auth, userEmail, userPassword)
-    //             .then(() => {
-    //                 sendEmailVerification(auth.currentUser)
-    //                     .then(() => {
-    //                         navigate('/verify-email')
-    //                     }).catch((err) => alert(err.message))
-    //                 })
-
-    //             }else {
-    //                 alert('Passwords don\'t match')
-    //                 console.log('Passwords not valid');
-    //             }
-    //    // setUserEmail('')
-    //     setUserPassword('')
-    //     setConfirmPassword('')
-    //   }
-
-    const [errors, setErrors] = useState({})
     const [errorName, setErrorName] = useState('')
     const [emailError, setEmailError] = useState('')
     const [confirmPasswordError, setConfirmPasswordError] = useState('')
@@ -79,22 +71,21 @@ const Register = () => {
 
     const validateName = (e) => {
         ctx.setUserName(e.target.value);
-        ctx.userName == '' ? setErrorName('This field is required') : setErrorName('');
+        ctx.userName === '' ? setErrorName('This field is required') : setErrorName('');
+
     }
 
     const validateEmail = (e) => {
         setUserEmail(e.target.value);
-        if(userEmail === '') {
+        if (userEmail === '') {
             setEmailError('This field is required')
-        } else if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(userEmail)) {
+            //} else if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(userEmail)) {
+        } else if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(userEmail)) {
             setEmailError('');
         } else {
             setEmailError('Email is not valid');
         }
     }
-
-
-
 
     const formIsValid = () => {
         const isValid = ctx.userName && userEmail && userPassword && confirmPassword &&
@@ -124,7 +115,7 @@ const Register = () => {
                 noValidate
                 autoComplete='off'
                 sx={{
-                    display: 'flex', flexDirection: 'column', gap: '18px', alignItems: 'start',
+                    display: 'flex', flexDirection: 'column', gap: '18px', alignItems: 'stretch', width: '520px'
 
                 }}>
                 <TextField
@@ -153,36 +144,40 @@ const Register = () => {
                 />
                 <TextField
                     required
+                    error={emailError ? true : false}
                     id='email-required'
                     label='E-mail'
                     type='email'
                     value={userEmail}
-                    //onChange={(e) => setUserEmail(e.target.value)}
                     onChange={validateEmail}
-                    //onBlur={validateEmail}
-                    // autoComplete='current-password'
+                    onBlur={validateEmail}
                     placeholder='Your Email'
                     helperText={emailError}
                 />
                 <TextField
                     required
+                    error={passwordError ? true : false}
                     id='password-required'
                     label='Password'
                     type='password'
                     value={userPassword}
-                    onChange={(e) => setUserPassword(e.target.value)}
+                    onChange={validatePassword}
+                    onBlur={validatePassword}
+                    //onChange={(e) => setUserPassword(e.target.value)}
                     autoComplete='current-password'
                     placeholder='Your Password'
+                    helperText={passwordError}
                 />
                 <TextField
                     required
-                    error
-                    helperText={passwordError}
+                    error={confirmPasswordError ? true : false}
+                    helperText={confirmPasswordError}
                     id='confirm-required'
                     label='Confirm Password'
                     type='password'
                     value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    onChange={validateConfirmPassword}
+                    onBlur={validateConfirmPassword}
                     autoComplete='current-password'
                     placeholder='Confirm Your Password'
                 />
@@ -195,7 +190,7 @@ const Register = () => {
                         sx={{ border: 'none', py: '12px', px: '2.5rem', whiteSpace: 'nowrap' }}>
                         Sign Up
                     </Button>
-                    <Button color='primary' sx={{ border: 'none', py: '8px', }}>
+                    <Button color='primary' sx={{ border: 'none', py: '12px', px: '1.5rem', }}>
                         Forgot Your Password?
                     </Button>
                 </Box>

@@ -71,7 +71,7 @@ const Login = () => {
   return (
     <>
       <Breadcrumbs aria-label='breadcrumb' sx={{ my: '1rem' }}>
-        <Link underline='hover' color='inherit' href='/' sx={{ fontSize: '12px', fontWeight: '300' }}>
+        <Link underline='hover' color='inherit' href='/' sx={{ fontSize: '12px', fontWeight: '300', mb: '5px' }}>
           Home
         </Link>
         <Typography color='text.primary' underline='hover' sx={{ fontSize: '12px', fontWeight: '400' }}>
