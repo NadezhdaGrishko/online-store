@@ -69,19 +69,26 @@ const lightTheme = createTheme({
           fontSize: '10px',
         }
       }
+    },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          width: '4px',
+        }
+      }
     }
 
   },
 
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 376,
-      md: 768,
-      lg: 1200,
-      xl: 1536,
-    }
-  }
+  // breakpoints: {
+  //   values: {
+  //     xs: 0,
+  //     sm: 376,
+  //     md: 768,
+  //     lg: 1200,
+  //     xl: 1536,
+  //   }
+  // }
 });
 
 const darkTheme = createTheme({
@@ -155,17 +162,24 @@ const darkTheme = createTheme({
           fontSize: '10px',
         }
       }
-    }
+    },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          width: '4px',
+        }
+      }
+    },
   },
-    breakpoints: {
-    values: {
-      xs: 0,
-      sm: 376,
-      md: 768,
-      lg: 1200,
-      xl: 1536,
-    }
-  }
+  //   breakpoints: {
+  //   values: {
+  //     xs: 0,
+  //     sm: 376,
+  //     md: 768,
+  //     lg: 1200,
+  //     xl: 1536,
+  //   }
+  // }
 });
 
 const theme = {

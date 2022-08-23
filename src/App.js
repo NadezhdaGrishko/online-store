@@ -43,7 +43,6 @@ const App = () => {
       ctx.setIsUser(true)
 
     } else {
-      //ЭТО ТОЖЕ НУЖНО!!
       ctx.setIsUser(false)
       //console.log(user);
       //только для Next - делаем redirect
@@ -65,13 +64,13 @@ const App = () => {
         {/* <Navbar dark={dark} toggleDark={toggleDark} /> */}
         <Container
           sx={{
-            maxWidth: {
-              xs: '376px',
-              //sm: '376px',
-              md: '1200px',
-              lg: '1400px',
-              //xl: '1400px',
-            }
+            // maxWidth: {
+            //   xs: '376px',
+            //   //sm: '376px',
+            //   md: '1200px',
+            //   lg: '1400px',
+            //   //xl: '1400px',
+            // }
           }}
         // sx={{mt: {xs: theme.lightTheme.spacing(8), sm: theme.lightTheme.spacing(10), lg: theme.lightTheme.spacing(12)}}} 
         >

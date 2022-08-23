@@ -10,7 +10,7 @@ function ContactUs() {
 
     return (
         <>
-            <Breadcrumbs aria-label='breadcrumb' sx={{ mt: '1rem' }}>
+            <Breadcrumbs aria-label='breadcrumb' sx={{ my: '1rem' }}>
                 <Link underline='hover' color='inherit' href='/' sx={{ fontSize: '12px', fontWeight: '300' }}>
                     Home
                 </Link>

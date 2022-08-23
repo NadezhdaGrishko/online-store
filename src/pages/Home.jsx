@@ -55,7 +55,7 @@ const Home = (props) => {
     //const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
     const usbQuery = query(usbCollection, where('title', '!=', ''), limit(20))
 
-    const unsub = onSnapshot(usbQuery, (snapshot) => {
+    unsub = onSnapshot(usbQuery, (snapshot) => {
       const result = []
       snapshot.forEach((doc) => result.push(doc))
       setUsb(result)
@@ -91,7 +91,7 @@ const Home = (props) => {
       <Divider textAlign='left' sx={{ py: '30px' }}>HEADPHONES</Divider>
       <Carousel collection={headphones} />
 
-      <Divider >USB</Divider>
+      <Divider textAlign='left' sx={{ py: '30px' }}>USB</Divider>
       <Carousel collection={usb} />
 
       <News />

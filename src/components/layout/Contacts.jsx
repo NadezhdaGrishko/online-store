@@ -20,13 +20,13 @@ const Contacts = () => {
     <Box sx={{ backgroundColor: '#020202', py: '8px', }}>
       <Container sx={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        maxWidth: {
-          xs: '376px',
-          sm: '376px',
-          md: '1200px',
-          lg: '1400px',
-          xl: '1400px',
-        }
+        // maxWidth: {
+        //   xs: '376px',
+        //   sm: '376px',
+        //   md: '1200px',
+        //   lg: '1400px',
+        //   xl: '1400px',
+        // }
       }}>
         <Typography sx={{
           color: theme.lightTheme.palette.gray.main,

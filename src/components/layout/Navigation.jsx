@@ -4,6 +4,10 @@ import { Button, List, ListItem, ListItemText, Typography } from '@mui/material'
 import theme from '../../theme';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { Box } from '@mui/system';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+import UsbIcon from '@mui/icons-material/Usb';
+import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
+import ImportantDevicesIcon from '@mui/icons-material/ImportantDevices';
 
 const Navigation = (props) => {
   const { type } = props
@@ -18,14 +22,15 @@ const Navigation = (props) => {
         component="a"
         href="/"
         sx={{
-          mr: 2,
+          m: 2,
           display: 'flex',
           alignItems: 'center',
           fontFamily: 'Poppins',
           fontWeight: 700,
           letterSpacing: '.1rem',
-          color: 'primary',
+          color: 'inherit',
           textDecoration: 'none',
+          minWidth: '224px'
         }}
       >
         <PhoneIphoneIcon sx={{ width: 36, height: 36 }} />
@@ -37,19 +42,24 @@ const Navigation = (props) => {
         sx={{
           display: 'flex',
           flexDirection: type === 'toolbar' ? 'row' : 'column',
+          
           // color: type === 'toolbar' ? 'red' : theme.lightTheme.palette.primary.main,
         }}>
         <ListItem button to='/products/headphones' component={NavLink} className='nav-link'>
+        {type === 'drawer' && <HeadphonesIcon sx={{mr: '.5rem', }}/>}
           <ListItemText primary='Headphones' />
         </ListItem>
         <ListItem button to='/products/USB' component={NavLink} className='nav-link'>
+        {type === 'drawer' && <UsbIcon sx={{mr: '.5rem', }}/>}
           <ListItemText primary='USB' />
         </ListItem>
         <ListItem button to='/products/chargets' component={NavLink} className='nav-link'>
+        {type === 'drawer' && <BatteryChargingFullIcon sx={{mr: '.5rem', }}/>}
           <ListItemText primary='Chargets' />
         </ListItem>
         <ListItem button to='/products/services' component={NavLink} className='nav-link'>
-          <ListItemText primary='Services' />
+        {type === 'drawer' && <ImportantDevicesIcon sx={{mr: '.5rem', }}/>}
+          <ListItemText sx={{whiteSpace: 'nowrap'}} primary='Mobile Devices' />
         </ListItem>
         <ListItem>
         <Button to='/products/catalog' sx={{px: '1.5rem', fontSize: '1rem'}} className='nav-link-catalog' component={NavLink} >

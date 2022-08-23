@@ -1,7 +1,7 @@
 import { Breadcrumbs, Button, Grid, Link, List, IconButton, ListItem, TextField, Typography, Divider } from '@mui/material'
 import { Box } from '@mui/system';
 import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from 'firebase/auth';
-import React, { useState, shouldComponentUpdate } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import Context from '../context/Context';
 import { useNavigate, useHistory } from 'react-router-dom';
@@ -13,6 +13,8 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [userPhoneNumber, setUserPhoneNumber] = useState('');
+
+   
 
     const validatePassword = (e) => {
         setUserPassword(e.target.value)

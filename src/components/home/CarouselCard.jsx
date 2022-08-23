@@ -75,10 +75,12 @@ const CarouselCard = (props) => {
                     </Box>
 
                     {/* ссылка должна быть products/названиеКоллекции/slugТовара */}
+                    <Box sx={{height: '20%'}}>
                     <Typography component={NavLink} to={`/product/${props.productName}`}
-                        sx={{ color: 'black', fontWeight: '400', fontSize: '14px', paddingTop: '6px', textDecoration: 'none', }}>
+                        sx={{ color: 'black', fontWeight: '400', fontSize: '14px', paddingTop: '6px', textDecoration: 'none',}}>
                         {props.productName}
                     </Typography>
+                    </Box>
 
                     <CardActions sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', }}>
                         <Box sx={{ paddingTop: '8px' }}>

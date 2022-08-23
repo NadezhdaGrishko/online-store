@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Typography, Box, Button, Paper, List, ListItem, Dialog,DialogTitle,DialogContent, DialogContentText, DialogActions, ListItemText, Avatar, Drawer } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Box, Button, Paper, List, ListItem, Dialog,DialogTitle,DialogContent, DialogContentText, DialogActions, ListItemText, Avatar, Drawer, Badge } from '@mui/material';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import Contacts from './Contacts';
 import Home from '../../pages/Home'
@@ -80,13 +80,13 @@ const ctx = useContext(Context);
             gap: '.5rem',
             justifyContent: 'space-between',
             p: { xs: 0, md: '.5rem' },
-            maxWidth: { 
-              xs: '376px',
-              sm: '376px',
-               md: '1200px',
-               lg: '1400px',
-              xl: '1400px',
-              }
+            // maxWidth: { 
+            //   xs: '376px',
+            //   sm: '376px',
+            //    md: '1200px',
+            //    lg: '1400px',
+            //   xl: '1400px',
+            //   }
           }}>
 
             <Typography
@@ -108,31 +108,24 @@ const ctx = useContext(Context);
               NewTell
             </Typography>
 
-            {/* не работает */}
             <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-            
-              <Navigation sx={{ display: { xs: 'block', sm: 'none' } }} type='toolbar' />
+              <Navigation type='toolbar' />
             </Box>
 
-            <IconButton 
-            color='inherit'
-            size='large'
-            sx={{ display: {xs: 'block', sm: 'none'}, width: 56, height: 56}}
-            onClick={handleOpen}>
-              <MenuIcon/>
-            </IconButton>
 
             <Box sx={{
               display: 'flex',
               alignItems: 'center',
               ml: 'auto',
             }}>
-              <Typography sx={{fontStyle:'italic'}}>Hello, {username}</Typography>
+              <Typography sx={{fontStyle:'italic', mr: '.5rem'}}>Hello, {username}</Typography>
               <IconButton aria-label='search' size='large' color='inherit'>
                 <SearchIcon/>
               </IconButton>
               <IconButton aria-label='cart' size='large' color='inherit'>
+                <Badge badgeContent={4} color="primary">
                 <ShoppingCartIcon/>
+                </Badge>
               </IconButton>
 
 
@@ -140,9 +133,18 @@ const ctx = useContext(Context);
               <Button sx={{ px: '1rem'}} onClick={handleClickOpenDialog}>Logout</Button>
               :
               <IconButton onClick={handleSignIn}>
-                 <AccountCircleIcon sx={{ width: '36px', height: '36px', ml: '2px'}}/> 
+                 <AccountCircleIcon sx={{ width: '36px', height: '36px',}}/> 
               </IconButton>
               }
+
+<IconButton 
+            color='inherit'
+            size='large'
+            sx={{ display: {xs: 'flex', alignItems: 'center', justifyContent: 'center', md: 'none'}, width: '44px', height: '44px'}}
+            onClick={handleOpen}
+            >
+              <MenuIcon/>
+            </IconButton>
 
               <Dialog
         open={openDialog}
