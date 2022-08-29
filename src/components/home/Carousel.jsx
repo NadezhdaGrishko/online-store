@@ -10,7 +10,6 @@ import { Navigation, Pagination } from "swiper";
 import product1 from '../../images/carousel/product1.png';
 
 
-
 function Carousel(props) {
     const { collection, itemsToShow } = props
     return (
@@ -24,22 +23,20 @@ function Carousel(props) {
             // pagination={{
             //     clickable: true,
             // }}
-            
+
             className="mySwiper"
             loop={true}
             grabCursor={true}>
 
             {collection.length === 0 ?
-            //можно не отображать - удалю потом
                 (<Typography sx={{ whiteSpace: 'nowrap', width: '100%', fontStyle: 'italic', py: '8px' }}>
                     No products yet...
                 </Typography>) :
-                (
-                    collection.map((item) => (
-                        <SwiperSlide key={item.id}>
-                            <CarouselCard image={product1} productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price} availability={item.data().availability} />
-                        </SwiperSlide>
-                    ))
+                (collection.map((item) => (
+                    <SwiperSlide key={item.id}>
+                        <CarouselCard image={product1} productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price} availability={item.data().availability} />
+                    </SwiperSlide>
+                ))
                 )}
         </Swiper>
     );

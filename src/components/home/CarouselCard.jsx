@@ -11,52 +11,67 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { NavLink } from 'react-router-dom';
 import ClearIcon from '@mui/icons-material/Clear';
 import CallIcon from '@mui/icons-material/Call';
+import { useContext } from 'react';
+import Context from '../../context/Context';
+
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import { useEffect } from 'react';
 
 const CarouselCard = (props) => {
 
+    const { product } = props
     const [ratingValue, setRatingValue] = useState(2);
+
+    const { addToCart, removeFromCart, isInCart} = useContext(Context)
+
+    useEffect(()=> {
+    //console.log(props);
+    },[])
+
+
     return (
         <>
             <Card
-                sx={{ width: { xs: '174px', md: '230px', lg: '234px' } }}>
+                sx={{ width: { xs: '174px', md: '210px' }, height: '100%' }}>
 
-                    {props.availability ? 
-                <CardContent sx={{
-                    color: theme.lightTheme.palette.success.main,
-                    //color: theme.success,
-                    fontWeight: '400',
-                    fontSize: '10px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    columnGap: '2px',
-                }}>
-                    {/* отображать в зависимости от availability 'in stock'/'check availability' */}
-                    <CheckCircleIcon sx={{ width: '10px', height: '10px' }} />
-                    in stock
-                </CardContent>
-                :
-                <CardContent sx={{
-                    color: theme.lightTheme.palette.error.main,
-                    //color: theme.success,
-                    fontWeight: '400',
-                    fontSize: '10px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    columnGap: '2px',
-                }}>
-                    {/* отображать в зависимости от availability 'in stock'/'check availability' */}
-                    <CallIcon sx={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: theme.lightTheme.palette.error.main, color: 'white', border: '1px solid #C94D3F'}} />
-                    chech availability
-                </CardContent>
-}
+                {props.availability ?
+                    <CardContent sx={{
+                        color: theme.lightTheme.palette.success.main,
+                        //color: theme.success,
+                        fontWeight: '400',
+                        fontSize: '10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        columnGap: '2px',
+                    }}>
+                        {/* отображать в зависимости от availability 'in stock'/'check availability' */}
+                        <CheckCircleIcon sx={{ width: '10px', height: '10px' }} />
+                        in stock
+                    </CardContent>
+                    :
+                    <CardContent sx={{
+                        color: theme.lightTheme.palette.error.main,
+                        //color: theme.success,
+                        fontWeight: '400',
+                        fontSize: '10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        columnGap: '2px',
+                    }}>
+                        {/* отображать в зависимости от availability 'in stock'/'check availability' */}
+                        <CallIcon sx={{ width: '9px', height: '9px', borderRadius: '50%', backgroundColor: theme.lightTheme.palette.error.main, color: 'white', border: '1px solid #C94D3F' }} />
+                        chech availability
+                    </CardContent>
+                }
                 <CardMedia
                     component='img'
                     image={props.image}
                     alt='product'
                 />
 
-                <CardContent>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'nowrap', }}>
+                <CardContent >
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'nowrap' }}>
                         <Rating
                             name='rating'
                             value={ratingValue}
@@ -75,26 +90,26 @@ const CarouselCard = (props) => {
                     </Box>
 
                     {/* ссылка должна быть products/названиеКоллекции/slugТовара */}
-                    <Box sx={{height: '20%'}}>
-                    <Typography component={NavLink} to={`/product/${props.productName}`}
-                        sx={{ color: 'black', fontWeight: '400', fontSize: '14px', paddingTop: '6px', textDecoration: 'none',}}>
-                        {props.productName}
-                    </Typography>
+                    <Box sx={{ height: '20%' }}>
+                        <Typography component={NavLink} to={`/product/${props.productName}`}
+                            sx={{ color: 'black', fontWeight: '400', fontSize: '14px', paddingTop: '6px', textDecoration: 'none', }}>
+                            {props.productName}
+                        </Typography>
                     </Box>
 
                     <CardActions sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', }}>
-                        <Box sx={{ paddingTop: '8px' }}>
+                        <Box sx={{ paddingTop: '8px', }}>
 
                             {props.oldPrice && (
-                            <Typography sx={{
-                                color: theme.lightTheme.palette.darkGray.main,
-                                fontSize: '14px',
-                                fontWeight: '400',
-                                textDecoration: 'line-through',
+                                <Typography sx={{
+                                    color: theme.lightTheme.palette.darkGray.main,
+                                    fontSize: '14px',
+                                    fontWeight: '400',
+                                    textDecoration: 'line-through',
 
-                            }}>
-                                {props.oldPrice}
-                            </Typography>
+                                }}>
+                                    {props.oldPrice}
+                                </Typography>
                             )}
                             <Typography sx={{
                                 color: 'black',
@@ -108,27 +123,31 @@ const CarouselCard = (props) => {
                         <Button
                             variant='outlined'
                             color='primary'
-                            to='/about'
-                            component={NavLink}
+                            // to='/'
+                            // component={NavLink}
+                            onClick={() => addToCart(product)}
                             sx={{
                                 minWidth: 'auto',
                                 height: '36px',
                                 width: '36px',
                             }}
                         >
-                            <img src={require('../../images/icons/icon-cart.png')} alt='cart' />
+                            <AddShoppingCartIcon/>
+                            {/* <img src={require('../../images/icons/icon-cart.png')} alt='cart' /> */}
                         </Button>
                         <Button
                             variant='outlined'
                             color='error'
-                            to='/about'
-                            component={NavLink}
+                            // to='/'
+                            // component={NavLink}
+                            onClick={() => console.log(product)}
                             sx={{
                                 minWidth: 'auto',
                                 height: '36px',
                                 width: '36px',
+                                borderColor: '#C94D3F'
                             }}>
-                            <ClearIcon />
+                            <RemoveShoppingCartIcon />
                         </Button>
                     </CardActions>
                 </CardContent>

@@ -1,49 +1,73 @@
 import React, { useState } from 'react'
-import { List, Typography, ListItemButton, ListItemText, Collapse, Tooltip, Button } from '@mui/material';
+import { List, Typography, ListItemButton, ListItemText, Box, IconButton, Collapse, Tooltip, Button, Divider } from '@mui/material';
 
 const ShopInfo = () => {
-    const [open, setOpen] = useState(false)
-    const handleClick = () => { setOpen(!open); }
-    return (
-        <>
-            Some shop information must be here
-        </>
 
-        // <List>
-        //   <ListItemButton onClick={handleClick}>
-        //     <Typography sx={{color: theme.lightTheme.palette.gray.main,
-        //     fontWeight: '600', fontSize: '12px'}}>
-        //       Mon-Thu: 
-        //     </Typography>
-        //     <ListItemText primary="9:00 AM - 5:30 PM"
-        //     sx={{color: 'white',
-        //     fontWeight: '600', fontSize: '12px'}}
-        //     />
-        //     {open ? <ExpandLess/> : <ExpandMore/>}
-        //   </ListItemButton>
-        //   <Collapse in={open} timeout='auto' unmountOnExit>
-        //     <List component='div' disablePadding>
-        //       <ListItemButton>
-        //         <Box>
-        //           <IconButton aria-label='time'>
-        //             <img src={require('../../images/icons/icon-time.png')} alt="time" />
-        //           </IconButton>
-        //           <Box sx={{display: 'flex', alignItems: 'flex-start', flexDirection: 'column', rowGap: '8px', color: theme.lightTheme.palette.gray.main,
-        //     fontWeight: '600', fontSize: '13px'}}>
-        //             <Typography sx={{fontWeight: '400', fontSize: '12px', color: 'black'}}>
-        //             We are open:
-        //           </Typography>
-        //           <Typography>Mon-Thu: 9:00 AM - 5:30 PM</Typography>
-        //           <Typography>Fr: 9:00 AM - 6:00 PM</Typography>
-        //           <Typography>Sat: 11:00 AM - 5:00 PM</Typography>
-        //           </Box>
+  return (
+    <Box sx={{ position: 'absolute', zIndex: '55', width: '262px', top: '100%', left: 0, backgroundColor: '#fff', py: '.3rem', mt: '.5rem', boxShadow: '0px 0px 15px 10px rgba(0,0,0, .5)'}}>
 
-        //         </Box>
-        //       </ListItemButton>
-        //     </List>
-        //   </Collapse>
-        // </List> 
-    )
+      <Box sx={{ display: 'flex', px: '.5rem', gap: '.5rem', py: '.5rem' }}>
+        <Box>
+          <img src={require('../../images/icons/icon-time.png')} alt="time" />
+        </Box>
+
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <Typography sx={{ fontWeight: '400', fontSize: '13px', color: '#000' }}>We are open:</Typography>
+          <Box sx={{ display: 'flex', gap: '4px' }}>
+            <Typography sx={{ fontWeight: '600', fontSize: '13px', color: '#A2A6B0' }}>Mon-Thu:</Typography>
+            <Typography sx={{ fontWeight: '600', fontSize: '13px', color: '#000' }}>9:00 AM - 5:30 PM</Typography>
+          </Box>
+          <Box sx={{ display: 'flex', gap: '4px' }}>
+            <Typography sx={{ fontWeight: '600', fontSize: '13px', color: '#A2A6B0' }}>Fr:</Typography>
+            <Typography sx={{ fontWeight: '600', fontSize: '13px', color: '#000' }}>9:00 AM - 6:00 PM</Typography>
+          </Box>
+          <Box sx={{ display: 'flex', gap: '4px' }}>
+            <Typography sx={{ fontWeight: '600', fontSize: '13px', color: '#A2A6B0' }}>Sat:</Typography>
+            <Typography sx={{ fontWeight: '600', fontSize: '13px', color: '#000' }}>11:00 AM - 5:00 PM</Typography>
+          </Box>
+          {/* {open ? <ExpandLess/> : <ExpandMore/>} */}
+        </Box>
+      </Box>
+
+      <Divider />
+      <Divider />
+
+      <Box sx={{ display: 'flex', gap: '.5rem', px: '.5rem', py: '.5rem' }}>
+        <Box>
+          <img src={require('../../images/icons/icon-map.png')} alt="map" />
+        </Box>
+
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <Typography sx={{ fontWeight: '400', fontSize: '13px', color: '#000' }}>Address: 1234 Street Adress, <br />City Address, 1234</Typography>
+        </Box>
+
+      </Box>
+
+      <Divider />
+      <Divider />
+
+      <Box sx={{ display: 'flex', flexDirection:'column', gap: '.3rem', px: '1rem', py: '.5rem' }}>
+        <Box sx={{ display: 'flex', gap: '4px' }}>
+          <Typography sx={{ fontWeight: '400', fontSize: '13px', color: '#000' }}>
+            Phones:
+          </Typography>
+          <Typography sx={{ fontWeight: '400', fontSize: '13px', color: '#0156FF' }}>
+            00 1234 5678 
+          </Typography>
+        </Box>
+
+        <Box sx={{ display: 'flex', gap: '4px' }}>
+          <Typography sx={{ fontWeight: '400', fontSize: '13px', color: '#000' }}>
+            E-mail:
+          </Typography>
+          <Typography sx={{ fontWeight: '400', fontSize: '13px', color: '#0156FF' }}>
+            shop@email.com5678 
+          </Typography>
+        </Box>
+      </Box>
+
+    </Box>
+  )
 }
 
 export default ShopInfo

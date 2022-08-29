@@ -3,17 +3,17 @@ import { Typography, Container, IconButton, List, ListItemButton, ListItemText, 
 import { NavLink } from 'react-router-dom';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { useState } from 'react';
 import theme from '../../theme';
 import { Box } from '@mui/system';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ShopInfo from './ShopInfo';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Context from '../../context/Context';
 
 const Contacts = () => {
 
+  const [show, setShow] = useState(false);
   const ctx = useContext(Context)
 
   return (
@@ -28,33 +28,70 @@ const Contacts = () => {
         //   xl: '1400px',
         // }
       }}>
+        <Box className='dropdown-contacts'
+          sx={{
+            position: 'relative', '&:hover': {
+              // backgroundColor: 'red',
+            },
+          }}>
+
+          <Box className='dropbtn-contacts'>
+            <Typography
+              sx={{
+                display: 'flex', alignItems: 'center', mr: '2px',
+                color: theme.lightTheme.palette.gray.main,
+                fontWeight: '600', fontSize: '12px'
+              }}>
+              Mon-Thu: 9:00 AM - 5:30 PM
+              <IconButton 
+              color='inherit'
+              //         sx={{'&hover': 'cursorPointer'}}
+              >
+                {show ? 
+                <ExpandLessIcon
+                onClick={()=>setShow(false)}/> 
+                : 
+              <ExpandMoreIcon
+              onClick={()=>setShow(true)} 
+              />}
+              </IconButton>
+            </Typography>
+          
+         
+          {/* //sx={{display: 'none'}} */}
+          {show && 
+            <ShopInfo />}
+          
+          </Box>
+          
+          {/* <Box sx={{position: 'absolute', top:0, left: 0, color: 'white',  width: '100px', height: '100px', backgroundColor: '#666'}}>
+           Hello world!
+          </Box> */}
+
+          
+
+        </Box>
+
         <Typography sx={{
-          color: theme.lightTheme.palette.gray.main,
-          fontWeight: '600', fontSize: '12px'
-        }}>
-          Mon-Thu: 9:00 AM - 5:30 PM
-        </Typography>
-        <Typography sx={{
+          display: {xs: 'none', md: 'block'},
           color: '#ACACAC',
           fontWeight: '600', fontSize: '12px'
         }}>
           Visit our showroom in 1234 Street Adress City Address, 1234
           <Typography to='/contacts' component={NavLink} sx={{
-          color: '#fff',
-          fontWeight: '600', fontSize: '12px', pl:'.3rem'}} >
+            color: '#fff',
+            fontWeight: '600', fontSize: '12px', pl: '.3rem'
+          }} >
             Contact Us
           </Typography>
         </Typography>
 
-
         <IconButton onClick={ctx.toggleDark}
           sx={{
-            // ml: 'auto',
             color: 'white'
           }}>
           {ctx.dark ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
-
 
       </Container>
     </Box>

@@ -49,7 +49,7 @@ const Navigation = (props) => {
         {type === 'drawer' && <HeadphonesIcon sx={{mr: '.5rem', }}/>}
           <ListItemText primary='Headphones' />
         </ListItem>
-        <ListItem button to='/products/USB' component={NavLink} className='nav-link'>
+        <ListItem button to='/products/usb' component={NavLink} className='nav-link'>
         {type === 'drawer' && <UsbIcon sx={{mr: '.5rem', }}/>}
           <ListItemText primary='USB' />
         </ListItem>
@@ -57,9 +57,9 @@ const Navigation = (props) => {
         {type === 'drawer' && <BatteryChargingFullIcon sx={{mr: '.5rem', }}/>}
           <ListItemText primary='Chargets' />
         </ListItem>
-        <ListItem button to='/products/services' component={NavLink} className='nav-link'>
+        <ListItem button to='/products/accessories' component={NavLink} className='nav-link'>
         {type === 'drawer' && <ImportantDevicesIcon sx={{mr: '.5rem', }}/>}
-          <ListItemText sx={{whiteSpace: 'nowrap'}} primary='Mobile Devices' />
+          <ListItemText sx={{whiteSpace: 'nowrap'}} primary='Mobile Accessories' />
         </ListItem>
         <ListItem>
         <Button to='/products/catalog' sx={{px: '1.5rem', fontSize: '1rem'}} className='nav-link-catalog' component={NavLink} >
