@@ -76,7 +76,8 @@ const lightTheme = createTheme({
           width: '4px',
         }
       }
-    }
+    },
+    
 
   },
 

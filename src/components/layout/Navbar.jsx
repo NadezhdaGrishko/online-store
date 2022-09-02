@@ -107,7 +107,7 @@ const Navbar = () => {
               NewTell
             </Typography>
 
-            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+            <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
               <Navigation type='toolbar' />
             </Box>
 
@@ -140,7 +140,7 @@ const Navbar = () => {
               <IconButton
                 color='inherit'
                 size='large'
-                sx={{ display: { xs: 'flex', alignItems: 'center', justifyContent: 'center', md: 'none' }, width: '44px', height: '44px' }}
+                sx={{ display: { xs: 'flex', alignItems: 'center', justifyContent: 'center', lg: 'none' }, width: '44px', height: '44px' }}
                 onClick={handleOpen}
               >
                 <MenuIcon />

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Box, Typography, InputLabel, MenuItem, FormControl, Select, SelectChangeEvent, Grid } from '@mui/material';
+import { Box, Typography, InputLabel, Breadcrumbs, Link,MenuItem, FormControl, Select, SelectChangeEvent, Grid } from '@mui/material';
 import product1 from '../../images/carousel/product1.png';
 import CarouselCard from '../../components/home/CarouselCard';
-import { collection, onSnapshot, QueryDocumentSpanshot, DocumentData, query, where, limit, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot, QueryDocumentSpanshot, DocumentData, query,orderBy, where, limit, getDocs } from 'firebase/firestore';
 import { firestore, auth } from '../../firebase/clientApp';
 
 const Catalog = () => {
@@ -29,6 +29,7 @@ const Catalog = () => {
       snapshot.forEach((doc) => result.push(doc))
       setProducts(result)
       //setLoading(false)
+      console.log(products);
     })
   }
 
@@ -55,7 +56,7 @@ const Catalog = () => {
   }
 
   useEffect(() => {
-    setProducts(getSorted(sort, slug))
+    //setProducts(getSorted(sort, slug))
     // console.log(params.slug);
     //console.log(slug);
     getProducts()
@@ -64,10 +65,41 @@ const Catalog = () => {
   }, [sort, slug, limitProducts])
 
 
-  const handleSortSelect = (e) => {
+  // const handleSortSelect = (e) => {
+  //   setSort(e.target.value);
+  //   console.log(sort);
+  //   if (sort === 'default') return products.sort((a, b) => a.id - b.id)
+  //   if (sort === 'price_asc') return products.sort((a, b) => a.price - b.price)
+  //   return products.sort((a, b) => b.price - a.price)
+  // };
+
+
+  const handleSortSelect = async (e) => {
     setSort(e.target.value);
-    console.log(sort);
-  };
+    //const headphonesQuery = query(headphonesCollection, where('availability', '==', true), limit(20))
+    let productsQuery;
+    if(sort==='default') {
+      productsQuery = query(productsCollection, where('title', '!=', ''), limit(100))
+    }
+    else if(sort==='price_asc') {
+      productsQuery = query(productsCollection, orderBy("price"), limit(100))
+    }
+    else if(sort==='price_desc') {
+      productsQuery = query(productsCollection, orderBy("price", "desc"), limit(100))
+    }
+    else if(sort==='rating') {
+      productsQuery = query(productsCollection, orderBy("rating"), limit(100))
+    }
+    //const productsQuery = query(productsCollection, where('title', '!=', ''), limit(100))
+
+    unsub = onSnapshot(productsQuery, (snapshot) => {
+      const result = []
+      snapshot.forEach((doc) => result.push(doc))
+      setProducts(result)
+      console.log(products);
+      //setLoading(false)
+    })
+  }
 
   const handleLimitSelect = (e) => {
     setLimitProducts(e.target.value);
@@ -76,8 +108,20 @@ const Catalog = () => {
   
   return (
     <div>
-      Catalog Page: {params.slug}
-      <FormControl sx={{ minWidth: '176px', }}>
+      <Breadcrumbs aria-label='breadcrumb' sx={{ my: '1rem' }}>
+                <Link underline='hover' color='inherit' href='/' sx={{ fontSize: '12px', fontWeight: '300' }}>
+                    Home
+                </Link>
+                <Typography color='text.primary' underline='hover' sx={{ fontSize: '12px', fontWeight: '400' }}>
+                    {params.slug}
+                </Typography>
+            </Breadcrumbs>
+      <Typography sx={{textTransform: 'capitalize', fontSize: '32px', fontWeight: '600'}}>
+        {params.slug}
+      </Typography>
+      
+      <Box sx={{display: 'flex', justifyContent: 'end', gap: '.5rem'}}>
+        <FormControl sx={{ minWidth: '176px',}}>
         <InputLabel id="sort-type-label">Sort by</InputLabel>
         <Select
           labelId="sort-type-label"
@@ -89,6 +133,7 @@ const Catalog = () => {
           <MenuItem value='default'>Default</MenuItem>
           <MenuItem value='price_asc'>Price Ascending</MenuItem>
           <MenuItem value='price_desc'>Price Descending</MenuItem>
+          <MenuItem value='rating'>Rating</MenuItem>
         </Select>
       </FormControl>
 
@@ -106,6 +151,8 @@ const Catalog = () => {
           <MenuItem value='limit_20'>20 per page</MenuItem>
         </Select>
       </FormControl>
+      </Box>
+      
 
       <Grid container gap={3} >
         {products.length === 0 ?
@@ -115,7 +162,11 @@ const Catalog = () => {
 
           (products.map((item) => (
             <Grid item key={item.id} >
-              <CarouselCard sx={{ height: '100%' }} image={product1} productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price} availability={item.data().availability} />
+              <CarouselCard sx={{ height: '100%' }} 
+              image={item.data().url}
+              //image='slide.png'
+              //image={product1} 
+              productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price} availability={item.data().availability} rating={item.data().rating} />
             </Grid>
           ))
           )}

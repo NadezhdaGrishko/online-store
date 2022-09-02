@@ -21,6 +21,7 @@ import { useEffect } from 'react';
 const CarouselCard = (props) => {
 
     const { product } = props
+    const {image} = props
     const [ratingValue, setRatingValue] = useState(2);
 
     const { addToCart, removeFromCart, isInCart} = useContext(Context)
@@ -66,7 +67,8 @@ const CarouselCard = (props) => {
                 }
                 <CardMedia
                     component='img'
-                    image={props.image}
+                    //image={props.image}
+                    image={require(`../../images/products/${image}`)}
                     alt='product'
                 />
 
@@ -74,10 +76,11 @@ const CarouselCard = (props) => {
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'nowrap' }}>
                         <Rating
                             name='rating'
-                            value={ratingValue}
-                            onChange={(event, newValue) => {
-                                setRatingValue(newValue);
-                            }}
+                            // value={ratingValue}
+                            // onChange={(event, newValue) => {
+                            //     setRatingValue(newValue);
+                            // }}
+                            value={props.rating}
                             sx={{ fontSize: '12px', }}
                         />
                         <Typography sx={{

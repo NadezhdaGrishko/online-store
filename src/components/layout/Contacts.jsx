@@ -14,6 +14,9 @@ import Context from '../../context/Context';
 const Contacts = () => {
 
   const [show, setShow] = useState(false);
+  const toggleShow = () => {
+    setShow(!show)
+  }
   const ctx = useContext(Context)
 
   return (
@@ -45,14 +48,16 @@ const Contacts = () => {
               Mon-Thu: 9:00 AM - 5:30 PM
               <IconButton 
               color='inherit'
+              onClick={toggleShow}
               //         sx={{'&hover': 'cursorPointer'}}
               >
                 {show ? 
                 <ExpandLessIcon
-                onClick={()=>setShow(false)}/> 
+                //onClick={()=>setShow(false)}
+                /> 
                 : 
               <ExpandMoreIcon
-              onClick={()=>setShow(true)} 
+              //onClick={()=>setShow(true)} 
               />}
               </IconButton>
             </Typography>

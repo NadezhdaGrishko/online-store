@@ -34,7 +34,7 @@ function Carousel(props) {
                 </Typography>) :
                 (collection.map((item) => (
                     <SwiperSlide key={item.id}>
-                        <CarouselCard image={product1} productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price} availability={item.data().availability} />
+                        <CarouselCard image={item.data().url} productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price} availability={item.data().availability} rating={item.data().rating}/>
                     </SwiperSlide>
                 ))
                 )}
