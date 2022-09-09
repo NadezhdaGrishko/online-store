@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumbs, Button, Grid, Link, List, IconButton, ListItem, TextField, Typography } from '@mui/material'
+import { Breadcrumbs, Button, Grid, Link, List, IconButton, ListItem, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';

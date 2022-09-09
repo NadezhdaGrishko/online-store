@@ -260,7 +260,7 @@ const Navigation = (props) => {
             </MenuItem>
           </SubMenu>
 
-          <SubMenu label='Keyboards'>
+          <SubMenu label='Keyboard'>
             <MenuHeader>
               Brand
             </MenuHeader>

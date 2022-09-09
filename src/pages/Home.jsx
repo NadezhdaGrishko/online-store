@@ -70,9 +70,10 @@ const Home = (props) => {
     //if (!auth.currentUser) navigate('/login')
     getHeadphones()
     getUsb()
+    console.log(headphones);
 
     return () => { unsub() }
-  }, 
+  }, []
   //[auth.currentUser]
   )
 

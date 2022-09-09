@@ -39,12 +39,37 @@ const ContextProvider = (props) => {
     const [cart, setCart] = useState([])
 
     const addToCart = (product) => {
-      product.quantity = 1
-      setCart(cart.push(product))
-      console.log(cart);
+      const foundIndex = cart.findIndex(item => item.id === product.id)
+      if(foundIndex !== -1) {
+        const tmp = cart;
+        tmp[foundIndex].quantity++;
+        setCart([...tmp]);
+      }else {
+        product.quantity = 1
+        setCart([...cart, product])
+      }
+
+      // product.quantity = 1;
+      // setCart([...cart, product]);
+      // console.log(cart);
+
+
+      //const tmp = cart;
+      //tmp.push(product);
+      
+      // let newCart = [];
+      // newCart.push(product);
+      // setCart(newCart);
+      // 
     }
     const removeFromCart = (product_id) => {
-      //todo
+      const foundIndex = cart.findIndex(item => item.id === product_id)
+      if(foundIndex !== -1) {
+        const tmp = cart;
+        tmp.splice(foundIndex, 1);
+        setCart([...tmp]);
+      }
+      console.log(cart);
     }
     const increaseQuantity = (product_id) => {
       //todo
@@ -52,11 +77,11 @@ const ContextProvider = (props) => {
     const decreaseQuantity = (product_id) => {
       //todo
     }
-    const getTotalQuantity = () => {
-      let summ = 0 
-      cart.forEach(item => summ += item.quantity)
-      return summ
-    }
+    // const getTotalQuantity = () => {
+    //   let summ = 0 
+    //   cart.forEach(item => summ += item.quantity)
+    //   return summ
+    // }
     const getTotalPrice = () => {
       let price = 0 
       cart.forEach(item => price += item.quantity * item.price)
@@ -80,7 +105,7 @@ const ContextProvider = (props) => {
         removeFromCart,
         increaseQuantity,
         decreaseQuantity,
-        getTotalQuantity,
+        //getTotalQuantity,
         getTotalPrice,
         isInCart
 

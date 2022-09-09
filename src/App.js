@@ -1,10 +1,11 @@
 import { createTheme, ThemeProvider, CssBaseline, IconButton, Paper, Container } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
-import About from './pages/About.jsx';
+import AboutUs from './pages/AboutUs.jsx';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Catalog from './pages/products/Catalog.jsx';
+import Product from './pages/products/Product.jsx';
 import theme from './theme';
 import Layout from './components/layout/Layout.jsx';
 //import Products from './pages/Products.jsx';
@@ -76,12 +77,19 @@ const App = () => {
         >
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
+            <Route path='/aboutUs' element={<AboutUs />} />
             <Route path='/login' element={<Login />} />    
             <Route path='/register' element={<Register />} /> 
             <Route path='/contacts' element={<ContactUs />} />        
             <Route path='/userAccount' element={<UserAccount />} />
             <Route path='/products/:slug' element={<Catalog />} />
+            
+            <Route path='/products/headphones/:productSlug' element={<Product/>} />
+            <Route path='/products/usb/:productSlug' element={<Product/>} />
+            <Route path='/products/chargets/:productSlug' element={<Product/>} />
+            <Route path='/products/powerbank/:productSlug' element={<Product/>} />
+            <Route path='/products/adapters/:productSlug' element={<Product/>} />
+            <Route path='/products/keyboard/:productSlug' element={<Product/>} />
             
           </Routes>
         </Container>

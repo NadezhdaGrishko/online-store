@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Typography, Box, Button, Paper, List, ListItem, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, ListItemText, Avatar, Drawer, Badge } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Box, Button, InputBase, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, ListItemText, Avatar, Drawer, Badge } from '@mui/material';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import Contacts from './Contacts';
-import Home from '../../pages/Home'
-import About from '../../pages/About'
 import Navigation from './Navigation'
 import { Container } from '@mui/system';
 import logo from '../../images/logo.png'
@@ -13,16 +11,61 @@ import cart from '../../images/icons/icon-shopping-cart.png'
 import theme from '../../theme';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { styled, alpha } from '@mui/material/styles';
 
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-import PersonIcon from '@mui/icons-material/Person';
 import { getAuth, signOut } from 'firebase/auth';
 
 import { useContext } from 'react';
 import Context from '../../context/Context';
 import CartInformer from './CartInformer';
+
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  color: 'black',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.black, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.black, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
+
 
 const Navbar = () => {
 
@@ -117,9 +160,18 @@ const Navbar = () => {
               ml: 'auto',
             }}>
               <Typography sx={{ fontStyle: 'italic', mr: '.5rem' }}>Hello, {username}</Typography>
-              <IconButton aria-label='search' size='large' color='inherit'>
+              {/* <IconButton aria-label='search' size='large' color='inherit'>
                 <SearchIcon />
-              </IconButton>
+              </IconButton> */}
+              <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
 
               {/* <IconButton aria-label='cart' size='large' color='inherit'>
                 <Badge badgeContent={4} color="primary">

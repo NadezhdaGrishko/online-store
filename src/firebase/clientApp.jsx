@@ -3,7 +3,7 @@ import {getFirestore} from 'firebase/firestore';
 import {getAuth} from 'firebase/auth';
 
 initializeApp ({
-    
+        
         apiKey: "AIzaSyCon62oF6sKmpA243RnBm5gyVUZLTXkp0Q",
         authDomain: "online-store-24d1f.firebaseapp.com",
         projectId: "online-store-24d1f",

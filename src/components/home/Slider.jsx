@@ -17,11 +17,9 @@ function Slider(props) {
     return (
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper" loop={true} grabCursor={true}>
             <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>
-            <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>
-            <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>
-            <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>
-            <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>
-            <SwiperSlide><img src={require('../../images/slider/slide.png')} alt="slide" /></SwiperSlide>
+            <SwiperSlide><img src={require('../../images/slider/slide1.png')} alt="slide" /></SwiperSlide>
+            <SwiperSlide><img src={require('../../images/slider/slide2.png')} alt="slide" /></SwiperSlide>
+            <SwiperSlide><img src={require('../../images/slider/slide3.png')} alt="slide" /></SwiperSlide>
         </Swiper>
     );
 }

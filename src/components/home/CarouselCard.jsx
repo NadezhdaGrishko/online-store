@@ -21,14 +21,14 @@ import { useEffect } from 'react';
 const CarouselCard = (props) => {
 
     const { product } = props
-    const {image} = props
-    const [ratingValue, setRatingValue] = useState(2);
+    //const {image} = props
+    //const [ratingValue, setRatingValue] = useState(2);
 
-    const { addToCart, removeFromCart, isInCart} = useContext(Context)
+    const { cart, addToCart, removeFromCart, isInCart} = useContext(Context)
 
     useEffect(()=> {
     //console.log(props);
-    },[])
+    },[cart])
 
 
     return (
@@ -68,7 +68,7 @@ const CarouselCard = (props) => {
                 <CardMedia
                     component='img'
                     //image={props.image}
-                    image={require(`../../images/products/${image}`)}
+                    image={require(`../../images/products/${props.image}`)}
                     alt='product'
                 />
 
@@ -88,13 +88,14 @@ const CarouselCard = (props) => {
                             whiteSpace: 'nowrap',
                             fontSize: '12px',
                         }}>
-                            Reviews ({ratingValue})
+                            Reviews {props.rating}
+                            {/* ({ratingValue}) */}
                         </Typography>
                     </Box>
 
                     {/* ссылка должна быть products/названиеКоллекции/slugТовара */}
                     <Box sx={{ height: '20%' }}>
-                        <Typography component={NavLink} to={`/product/${props.productName}`}
+                        <Typography component={NavLink} to={`/products/${props.collection}/${props.productName}`}
                             sx={{ color: 'black', fontWeight: '400', fontSize: '14px', paddingTop: '6px', textDecoration: 'none', }}>
                             {props.productName}
                         </Typography>
@@ -123,6 +124,7 @@ const CarouselCard = (props) => {
                             </Typography>
                         </Box>
 
+{!isInCart(product.id) ?
                         <Button
                             variant='outlined'
                             color='primary'
@@ -138,12 +140,13 @@ const CarouselCard = (props) => {
                             <AddShoppingCartIcon/>
                             {/* <img src={require('../../images/icons/icon-cart.png')} alt='cart' /> */}
                         </Button>
+                        :
                         <Button
                             variant='outlined'
                             color='error'
                             // to='/'
                             // component={NavLink}
-                            onClick={() => console.log(product)}
+                            onClick={() => removeFromCart(product.id)}
                             sx={{
                                 minWidth: 'auto',
                                 height: '36px',
@@ -152,6 +155,7 @@ const CarouselCard = (props) => {
                             }}>
                             <RemoveShoppingCartIcon />
                         </Button>
+}
                     </CardActions>
                 </CardContent>
             </Card>

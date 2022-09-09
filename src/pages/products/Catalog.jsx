@@ -60,6 +60,7 @@ const Catalog = () => {
     // console.log(params.slug);
     //console.log(slug);
     getProducts()
+    console.log(products);
 
     return () => { unsub() }
   }, [sort, slug, limitProducts])
@@ -166,7 +167,10 @@ const Catalog = () => {
               image={item.data().url}
               //image='slide.png'
               //image={product1} 
-              productName={item.data().title} oldPrice={item.data().oldPrice} price={item.data().price} availability={item.data().availability} rating={item.data().rating} />
+              
+              productName={item.data().title} oldPrice={item.data().oldPrice} 
+              price={item.data().price} availability={item.data().availability} 
+              rating={item.data().rating} collection={slug}/>
             </Grid>
           ))
           )}
