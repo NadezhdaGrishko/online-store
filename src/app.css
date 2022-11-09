@@ -1,0 +1,67 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+/* .body-root {
+font-family: 'Poppins', sans-serif;
+} */
+.nav-link.active {
+background-color: rgba(0,0,0,.1);
+}
+.nav-link-catalog.active {
+  background-color: rgba(1,86,255,.1);
+  background-opacity: .1,
+  }
+
+  /* .dropbtn-contacts:hover {
+    background-color: #474;
+  }
+  .dropbtn-contacts:hover .dropdown-content-contacts {
+    display: block;
+  } */
+
+.productImageInCart {
+  object-fit: fill;
+  min-width: 100%;
+  height: 100%;
+}
+
+
+.swiper.mySwiper {
+  height: 100% !important;
+}
+
+.swiper {
+  height: 456px !important;
+}
+.swiper-wrapper {
+  height: 100% !important;
+  padding-top: 2px !important;
+  padding-bottom: 4px !important;
+}
+
+.swiperSlideInCarousel {
+  align-self: stretch;
+}
+.productImageInSwiperSlide {
+  height: auto !important;
+}
+
+.gridCarouselCardInCatalog .productImageInSwiperSlide {
+  width: auto !important;
+}
+
+.productImageInProductPage {
+   width: 100%; 
+ /* height: 100%; */
+}
+
